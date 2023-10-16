@@ -18,8 +18,8 @@ class ProductManager{
 
     getProducts = async () => {
             const ListProductsJSON = await fs.promises.readFile(this.path, 'utf-8');
-            const ProductsJS = JSON.parse(ListProductsJSON);
-            return ProductsJS;
+            const ListProductsJS = JSON.parse(ListProductsJSON);
+            return ListProductsJS;
         }
 
     addProduct = async (title, description, price, thumbnail, code, stock) => {
@@ -50,7 +50,7 @@ class ProductManager{
         }
     }
     
-    updateProduct = async(id,title, description, price, thumbnail, code, stock) => {
+    updateProduct = async (id,title, description, price, thumbnail, code, stock) => {
         if( !id, !title || !description || !price || !thumbnail || !code || !stock){
             console.error("ingrese todos los datos para actualizar el producto");
             return
@@ -82,7 +82,7 @@ class ProductManager{
 
     getProductbyId = async (id) => {
         const allproducts = await this.getProducts();
-        const found = allproducts.find(element=>element.id===id);
+        const found = allproducts.find(element => element.id === id);
         await fs.promises.readFile(this.path,"utf-8");
         return found;
     }
@@ -94,35 +94,35 @@ class ProductManager{
 
 async function ProductGenerator(){
     
-    const pm = new ProductManager("./product.json");
+    const ProductFinaly = new ProductManager("./product.json");
 
     //SE COMIENZA A AGREGAR PRODUCTOS
-    await pm.addProduct("Perro", "pastor aleman", 5000, "imagen", "001", 15);
-    console.log('PRIMER PRODUCTO AGREGADO', await pm.getProducts());
+    await ProductFinaly.addProduct("Perro", "pastor aleman", 5000, "imagen", "001", 15);
+    console.log('PRIMER PRODUCTO AGREGADO', await ProductFinaly.getProducts());
 
-    await pm.addProduct("Gato", "siames cazador", 7000, "imagen", "002", 10);
-    console.log('SEGUNDO PRODUCTO AGREGADO', await pm.getProducts());
+    await ProductFinaly.addProduct("Gato", "siames cazador", 7000, "imagen", "002", 10);
+    console.log('SEGUNDO PRODUCTO AGREGADO', await ProductFinaly.getProducts());
 
-    await pm.addProduct("Iguana", "de las Islas Galapagos", 2500, "imagen", "003", 5);
-    console.log('TERCER PRODUCTO AGREGADO', await pm.getProducts());
+    await ProductFinaly.addProduct("Iguana", "de las Islas Galapagos", 2500, "imagen", "003", 5);
+    console.log('TERCER PRODUCTO AGREGADO', await ProductFinaly.getProducts());
 
     //SE MODIFICA EL PRODUCTO N° 3
-    //await pm.updateProduct(3, "Castor", "de los bellos lagos", 4550, "imagen", "003", 6);
-    //console.log('PRIMER PRODUCTO MODIFICADO', await pm.getProducts());
+    //await ProductFinaly.updateProduct(3, "Castor", "de los bellos lagos", 4550, "imagen", "003", 6);
+    //console.log('PRIMER PRODUCTO MODIFICADO', await ProductFinaly.getProducts());
 
     //SE AGREGA UN PRODUCTO NUEVO
-    //await pm.addProduct("Loro", "De la selva misionera", 5500, "imagen", "004", 7);
-    //console.log('AGREGANDO NUEVO PRODUCTO', await pm.getProducts());
+    //await ProductFinaly.addProduct("Loro", "De la selva misionera", 5500, "imagen", "004", 7);
+    //console.log('AGREGANDO NUEVO PRODUCTO', await ProductFinaly.getProducts());
 
     //SE ELIMINA EL PRIMER PRODUCTO
-    //await pm.deleteProduct(1);
-    //console.log('PRODUCTO BORRADO EXITOSAMENTE', await pm.getProducts());
+    //await ProductFinaly.deleteProduct(1);
+    //console.log('PRODUCTO BORRADO EXITOSAMENTE', await ProductFinaly.getProducts());
 
     //SE ELIMINAN TODOS LOS PRODUCTOS
-    //await pm.deleteProduct(2);
-    //await pm.deleteProduct(3);
-    //await pm.deleteProduct(4);
-    //console.log('SE ELIMNARON LOS PRODUCTOS', await pm.getProducts());
+    //await ProductFinaly.deleteProduct(2);
+    //await ProductFinaly.deleteProduct(3);
+    //await ProductFinaly.deleteProduct(4);
+    //console.log('SE ELIMNARON LOS PRODUCTOS', await ProductFinaly.getProducts());
 
 }    
     
