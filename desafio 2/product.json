@@ -19,12 +19,12 @@
   },
   {
     "id": 3,
-    "title": "Iguana",
-    "description": "de las Islas Galapagos",
-    "price": 2500,
+    "title": "Castor",
+    "description": "de los bellos lagos",
+    "price": 4550,
     "thumbnail": "imagen",
     "code": "003",
-    "stock": 5
+    "stock": 6
   },
   {
     "id": 4,

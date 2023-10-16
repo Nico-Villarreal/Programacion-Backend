@@ -99,7 +99,7 @@ async function ProductGenerator(){
     await pm.addProduct("Iguana", "de las Islas Galapagos", 2500, "imagen", "003", 5);
     await pm.addProduct("Loro", "De la selva misionera", 5500, "imagen", "004", 7);
 
-    //await pm.updateProduct(3, "Castor", "de los bellos lagos", 4550, "imagen", "003", 6);
+    await pm.updateProduct(3, "Castor", "de los bellos lagos", 4550, "imagen", "003", 6);
 
     //await pm.deleteProduct(3);
 
