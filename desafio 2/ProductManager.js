@@ -90,18 +90,39 @@ class ProductManager{
 };
 
 
+//----FUNCION PARA EJECUTAR LOS TEST (ELIMINAR LAS BARRAS)
+
 async function ProductGenerator(){
     
     const pm = new ProductManager("./product.json");
 
+    //SE COMIENZA A AGREGAR PRODUCTOS
     await pm.addProduct("Perro", "pastor aleman", 5000, "imagen", "001", 15);
+    console.log('PRIMER PRODUCTO AGREGADO', await pm.getProducts());
+
     await pm.addProduct("Gato", "siames cazador", 7000, "imagen", "002", 10);
+    console.log('SEGUNDO PRODUCTO AGREGADO', await pm.getProducts());
+
     await pm.addProduct("Iguana", "de las Islas Galapagos", 2500, "imagen", "003", 5);
-    await pm.addProduct("Loro", "De la selva misionera", 5500, "imagen", "004", 7);
+    console.log('TERCER PRODUCTO AGREGADO', await pm.getProducts());
 
+    //SE MODIFICA EL PRODUCTO N° 3
     //await pm.updateProduct(3, "Castor", "de los bellos lagos", 4550, "imagen", "003", 6);
+    //console.log('PRIMER PRODUCTO MODIFICADO', await pm.getProducts());
 
-    await pm.deleteProduct(3);
+    //SE AGREGA UN PRODUCTO NUEVO
+    //await pm.addProduct("Loro", "De la selva misionera", 5500, "imagen", "004", 7);
+    //console.log('AGREGANDO NUEVO PRODUCTO', await pm.getProducts());
+
+    //SE ELIMINA EL PRIMER PRODUCTO
+    //await pm.deleteProduct(1);
+    //console.log('PRODUCTO BORRADO EXITOSAMENTE', await pm.getProducts());
+
+    //SE ELIMINAN TODOS LOS PRODUCTOS
+    //await pm.deleteProduct(2);
+    //await pm.deleteProduct(3);
+    //await pm.deleteProduct(4);
+    //console.log('SE ELIMNARON LOS PRODUCTOS', await pm.getProducts());
 
 }    
     
