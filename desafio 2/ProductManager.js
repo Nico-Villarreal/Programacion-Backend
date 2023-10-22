@@ -89,7 +89,6 @@ class ProductManager{
 
 };
 
-
 //----FUNCION PARA EJECUTAR LOS TEST (ELIMINAR LAS BARRAS)
 
 async function ProductGenerator(){
