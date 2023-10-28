@@ -6,6 +6,7 @@ const carts=[];
 const products=[];
 const path= "./data/carts.js";
 
+
 const readDataFromFile = async (path) => {
     try {
         const data = await fs.promises.readFile(path, 'utf8');
@@ -26,7 +27,6 @@ const generateId = async () => {
 };
 
 const generateProductId = async () => {
-
     const counter = products.length;
     if (counter == 0) {
         return 1;
@@ -36,7 +36,7 @@ const generateProductId = async () => {
 }
 
 router.get("/", async(req, res)=>{
-    const cartId = parseInt(req.params.cId);
+    const cartId = parseInt(req.params.cid);
 
     const data = await fs.promises.readFile(path, 'utf8');
     const carts = JSON.parse(data);
@@ -51,26 +51,25 @@ router.get("/", async(req, res)=>{
 });
 
 
-//crea el carrito.
 router.post("/", async (req, res) => {
     let cart = req.body;
     const id = await generateId();
     cart.id = id;
     cart.products = [{
-        id: await generateProductId(cart.products), // Generar el ID del primer producto vacío de forma automática
+        id: await generateProductId(cart.products), 
     }];
 
     const data = await fs.promises.readFile(path, 'utf8');
-    let carts = JSON.parse(data); // Asignar el valor leído a una variable local carts
+    let carts = JSON.parse(data); 
 
     carts.push(cart);
     await fs.promises.writeFile(path, JSON.stringify(carts, null, 2));
     res.send({ status: "success", msg: 'Carrito creado!' });
 });
 
-router.post("/:cId/product/:pId", async (req, res) => {
-    const cartId = parseInt(req.params.cId);
-    const productId = parseInt(req.params.pId);
+router.post("/:cid/product/:pid", async (req, res) => {
+    const cartId = parseInt(req.params.cid);
+    const productId = parseInt(req.params.pid);
     const quantity = parseInt(req.body.quantity);
 
     console.log("Quantity recibido:", quantity);
@@ -94,12 +93,11 @@ router.post("/:cId/product/:pId", async (req, res) => {
         const existingProduct = cart.products[productIndex];
         existingProduct.quantity = existingProduct.quantity || 0;
 
-        
         existingProduct.quantity += quantity;
     }
 
     await fs.promises.writeFile(path, JSON.stringify(carts, null, 2));
-    res.send({ status: "success", msg: 'Producto agregado al carrito!' });
+    res.send({ status: "success", msg: 'Producto agregado al carrito exitosamente!' });
 });
 
 export default router;
