@@ -1,1 +1,24 @@
-[]
+[
+  {
+    "title": "Gato",
+    "description": "siames cazador",
+    "price": 7000,
+    "thumbnail": "imagen",
+    "code": "002",
+    "stock": 10,
+    "category": "Felinos",
+    "status": true,
+    "id": 1
+  },
+  {
+    "title": "Perro",
+    "description": "Pastor Aleman",
+    "price": 5500,
+    "thumbnail": "imagen",
+    "code": "001",
+    "stock": 2,
+    "category": "Perrunos",
+    "status": true,
+    "id": 2
+  }
+]
