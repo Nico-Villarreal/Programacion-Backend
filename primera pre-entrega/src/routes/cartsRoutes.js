@@ -51,17 +51,16 @@ router.get("/", async(req, res) => {
 });
 
 
-//crea el carrito.
 router.post("/", async (req, res) => {
     let cart = req.body;
     const id = await generateId();
     cart.id = id;
     cart.products = [{
-        id: await generateProductId(cart.products), // Generar el ID del primer producto vacío de forma automática
+        id: await generateProductId(cart.products), 
     }];
 
     const data = await fs.promises.readFile(path, 'utf8');
-    let carts = JSON.parse(data); // Asignar el valor leído a una variable local carts
+    let carts = JSON.parse(data); 
 
     carts.push(cart);
     await fs.promises.writeFile(path, JSON.stringify(carts, null, 2));
