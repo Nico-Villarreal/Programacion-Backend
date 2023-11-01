@@ -1,7 +1,7 @@
 {
-  "name": "primer-pre-entrega",
+  "name": "primera-pre-entrega",
   "version": "1.0.0",
-  "description": "",
+  "description": "primera pre-entrega del proyecto final",
   "main": "nodemon src/App.js",
   "type": "module",
   "scripts": {
