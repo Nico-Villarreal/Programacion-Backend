@@ -3,7 +3,7 @@ import fs from 'fs';
 
 const router = express.Router();
 const products = [];
-const path = './products/products.json';
+const path = './src/products/products.json';
 
 
 const listProduct = await fs.promises.readFile(path,"utf-8");
