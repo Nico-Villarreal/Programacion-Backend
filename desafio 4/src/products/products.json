@@ -1,0 +1,58 @@
+[
+  {
+    "title": "productTest3",
+    "description": "test3",
+    "price": "15000",
+    "thumbnal": "imagen",
+    "code": "a125",
+    "stock": "35"
+  },
+  {
+    "title": "productTest 4",
+    "description": "test4",
+    "price": "12555",
+    "thumbnal": "imagen4",
+    "code": "a1235",
+    "stock": "52"
+  },
+  {
+    "title": "productTest6",
+    "description": "test6",
+    "price": "45000",
+    "thumbnal": "imagen6",
+    "code": "a1237",
+    "stock": "12"
+  },
+  {
+    "title": "productTest7",
+    "description": "test7",
+    "price": "36000",
+    "thumbnal": "imagen7",
+    "code": "a1238",
+    "stock": "25"
+  },
+  {
+    "title": "ProductTest8",
+    "description": "test8",
+    "price": "17500",
+    "thumbnal": "imagen8",
+    "code": "b123",
+    "stock": "35"
+  },
+  {
+    "title": "productTest9",
+    "description": "test9",
+    "price": "10000",
+    "thumbnal": "imagen9",
+    "code": "b1234",
+    "stock": "19"
+  },
+  {
+    "title": "productTest10",
+    "description": "test10",
+    "price": "16000",
+    "thumbnal": "imagen10",
+    "code": "a1235",
+    "stock": "35"
+  }
+]

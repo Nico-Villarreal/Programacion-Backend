@@ -6,10 +6,10 @@ import __dirname from './Utils.js';
 import productsRoutes from './routes/view.router.js';
 
 const products = [];
-const path= './products/products.json';
+const path = './products/products.json';
 
 const listProduct = await fs.promises.readFile(path,"utf-8");
-const listProductParse= JSON.parse(listProduct);
+const listProductParse = JSON.parse(listProduct);
 products.push(...listProductParse);
 
 
@@ -37,7 +37,7 @@ const socketServer = new Server(httpServer);
 
 socketServer.on('connection', socket =>{
 
-    socket.on('prod', async data=>{
+    socket.on('prod', async data => {
         products.push(data);
         await fs.promises.writeFile(path, JSON.stringify(products,null,2));
 
