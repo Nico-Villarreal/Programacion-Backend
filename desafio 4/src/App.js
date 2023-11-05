@@ -3,10 +3,10 @@ import { Server } from 'socket.io';
 import express from 'express';
 import handlebars from 'express-handlebars'
 import __dirname from './Utils.js';
-import productsRoutes from './routes/view.router.js';
+import productsRoutes from '../src/routes/view.router.js';
 
 const products = [];
-const path = './products/products.json';
+const path = './src/products/products.json';
 
 const listProduct = await fs.promises.readFile(path,"utf-8");
 const listProductParse = JSON.parse(listProduct);
@@ -14,7 +14,7 @@ products.push(...listProductParse);
 
 
 const app = express();
-const PORT = 9090;
+const PORT = 8080;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
