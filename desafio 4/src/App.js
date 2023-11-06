@@ -3,7 +3,7 @@ import { Server } from 'socket.io';
 import express from 'express';
 import handlebars from 'express-handlebars'
 import __dirname from './Utils.js';
-import productsRoutes from '../src/routes/view.router.js';
+import productsRoutes from './routes/view.router.js';
 
 const products = [];
 const path = './src/products/products.json';
@@ -32,18 +32,19 @@ const httpServer = app.listen(PORT, () => {
     console.log(`Servidor corriendo en el puerto: ${PORT}`);
 })
 
-//traigo la información para guardar el producto.
+//traigo la info a guardar.
 const socketServer = new Server(httpServer);
 
 socketServer.on('connection', socket =>{
 
-    socket.on('prod', async data => {
-        products.push(data);
-        await fs.promises.writeFile(path, JSON.stringify(products,null,2));
-
-        //emito la lista actualizada
-        socketServer.emit('listUpdate', products);
+    socket.on('prod', async data =>{
+        if(products.length != 0){
+            products.push(data);
+            await fs.promises.writeFile(path, JSON.stringify(products,null,2));
+      
+            //mando la lista actualizada
+            socketServer.emit('listUpdate', products);
+        }
 
     })
-
 });

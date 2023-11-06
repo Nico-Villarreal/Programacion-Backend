@@ -23,34 +23,37 @@ let addProduct = button.addEventListener("click",() => {
     categoryForm = document.getElementById("category");
 
     //los guardo en el objeto
-    products = {
-        title: titleForm.value,
-        description: descriptionForm.value,
-        price: priceForm.value,
-        thumbnal: thumbnailForm.value,
-        code: codeForm.value,
-        stock: stockForm.value,
-        category: categoryForm.value
-    }
+    if (titleForm.value !== '' && descriptionForm.value !== '' && priceForm.value !== '' && thumbnailForm.value !== '' && codeForm.value !== '' && stockForm.value !== '' && stockForm.categoryForm !== '') {
+        products = {
+            title: titleForm.value,
+            description: descriptionForm.value,
+            price: priceForm.value,
+            thumbnail: thumbnailForm.value,
+            code: codeForm.value,
+            stock: stockForm.value,
+            categoryForm: categoryForm.value
+        };
+    
+        titleForm.value = '';
+        descriptionForm.value = '';
+        priceForm.value = '';
+        thumbnailForm.value = '';
+        codeForm.value = '';
+        stockForm.value = '';
+        categoryForm.value = '';
 
-    titleForm.value = '';
-    descriptionForm.value = '';
-    priceForm.value = '';
-    thumbnailForm.value = '';
-    codeForm.value = '';
-    stockForm.value = '';
-    categoryForm.value = '';
+        alert('Se agrego correctamente el product')
+        
+    } else{
+        alert('Por favor, rellene la totalidad de los campos')
+    }
    
-    //mando los datos
     socket.emit('prod', products);
 
-    //muestro la lista.
-    socket.on('listUpdate',data => {
+    socket.on('listUpdate', data => {
         listProduct = document.getElementById("listProducts");
         listProduct.innerHTML = JSON.stringify(data, null, 2);
-
     })
-
 });
 
 
