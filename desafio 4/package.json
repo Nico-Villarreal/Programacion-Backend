@@ -1,12 +1,12 @@
 {
-  "name": "desafio-4",
+  "name": "desafio-websockets-handlebars",
   "version": "1.0.0",
-  "description": "utilizacion de handlebars y websockets",
-  "main": "nodemon ./src/public/index.js",
   "type": "module",
+  "description": "",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon src/App.js"
+    "start": "nodemon src/app.js"
   },
   "keywords": [],
   "author": "",
@@ -14,6 +14,7 @@
   "dependencies": {
     "express": "^4.18.2",
     "express-handlebars": "^7.1.2",
+    "handlebars": "^4.7.8",
     "nodemon": "^3.0.1",
     "socket.io": "^4.7.2"
   }

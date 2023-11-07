@@ -1,36 +1,20 @@
-<div>
-    <div>
-        <h2>COMIENCE A AGREGAR SU PRODUCTO</h2>
+<div id="productList">
+    <h1>Productos por webSockets</h1>
+    {{#each products}}
+    <div id="product-{{this.id}}">
+        <p>-----------------------------------------</p>
+        <p>Title: {{this.title}}</p>
+        <p>Description: {{this.description}}</p>
+        <p>Category: {{this.category}}</p>
+        <p>Price: {{this.price}}</p>
+        <img src="{{this.thumbnail}}" alt="{{this.title}}">
+        <p>Code: {{this.code}}</p>
+        <p>Stock: {{this.stock}}</p>
+        <p>Status: {{this.status}}</p>
+        <p>Id: {{this.id}}</p>
+        <p>-----------------------------------------</p>
     </div>
-    <form action="" method="">
-        <table>
-            <tr>
-                <td>title:</td><td><input type="text" id="title"></td>
-            </tr>
-            <tr>
-                <td>description:</td><td><input type="text" id="description"></td>
-            </tr>
-            <tr>
-                <td>price:</td><td><input type="number" id="price"></td>
-            </tr>
-            <tr>
-                <td>thumbnail</td><td><input type="text" id="thumbnail"></td>
-            </tr>
-            <tr>
-                <td>code:</td><td><input type="text" id="code"></td>
-            </tr>
-            <tr>
-                <td>stock:</td><td><input type="number" id="stock"></td>
-            </tr>
-            <tr>
-                <td>category:</td><td><input type="text" id="category"></td>
-            </tr>
-            <tr>
-                <td><input type="button" id="btn" value="Agregar Producto"></td>
-            </tr>
-        </table>
-    </form>
+    {{/each}}
 </div>
-
 <script src="/socket.io/socket.io.js"></script>
-<script src="index.js"></script>
+<script src="/src/public/js/index.js"></script>

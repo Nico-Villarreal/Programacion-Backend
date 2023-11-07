@@ -1,14 +1,16 @@
 <div>
-        {{#each products}}
-        <div>
-            <p>itle: {{this.title}}</p>
-            <p>description: {{this.description}}</p>
-            <p>price: {{this.price}}</p>
-            <p>thumbnail: {{this.thumbnail}}</p>
-            <p>code: {{this.code}}</p>
-            <p>stock: {{this.stock}}</p>
-            <p>category: {{this.category}}</p>
-            </br>
-        </div>
-        {{/each}}
+    <h1>Productos por http</h1>
+    {{#each products}}
+    <div>
+        <p>Title: {{this.title}}</p>
+        <p>Description: {{this.description}}</p>
+        <p>Category: {{this.category}}</p>
+        <p>Price: {{this.price}}</p>
+        <img src={{this.thumbnail}} alt={{this.title}}>
+        <p>Code: {{this.code}}</p>
+        <p>Stock: {{this.stock}}</p>
+        <p>Status: {{this.status}}</p>
+        <p>Id: {{this.id}}</p>
+    </div>
+    {{/each}}
 </div>

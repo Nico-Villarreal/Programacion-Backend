@@ -1,50 +1,38 @@
-import fs from 'fs';
-import { Server } from 'socket.io';
-import express from 'express';
-import handlebars from 'express-handlebars'
-import __dirname from './Utils.js';
-import productsRoutes from './routes/view.router.js';
-
-const products = [];
-const path = './src/products/products.json';
-
-const listProduct = await fs.promises.readFile(path,"utf-8");
-const listProductParse = JSON.parse(listProduct);
-products.push(...listProductParse);
-
+import express, { urlencoded } from "express";
+import router from "./routes/index.js";
+import handlebars from "express-handlebars";
+import __dirname from './utils.js';
+import http from 'http';
+import { Server } from "socket.io";
 
 const app = express();
+const server = http.createServer(app);
+const io = new Server(server);
 const PORT = 8080;
 
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(urlencoded({extended: true}));
 
-app.use(express.static(__dirname + '/public'))
+app.use(express.static(__dirname + '/public'));
 
 app.engine('handlebars', handlebars.engine());
-app.set('views', __dirname + '/views/');
+app.set('views', __dirname + '/views');
 app.set('view engine', 'handlebars');
 
-app.use('/', productsRoutes);
 
+app.use('/', router);
 
-const httpServer = app.listen(PORT, () => {
-    console.log(`Servidor corriendo en el puerto: ${PORT}`);
-})
-
-//traigo la info a guardar.
-const socketServer = new Server(httpServer);
-
-socketServer.on('connection', socket =>{
-
-    socket.on('prod', async data =>{
-        if(products.length != 0){
-            products.push(data);
-            await fs.promises.writeFile(path, JSON.stringify(products,null,2));
-      
-            //mando la lista actualizada
-            socketServer.emit('listUpdate', products);
-        }
-
-    })
+io.on('connection', socket => {
+    console.log('Nuevo cliente conectado');
+    socket.on('disconnect', () => {
+        console.log('Un cliente se ha desconectado');
+    });
 });
+
+server.listen(PORT, () => {
+    console.log(`Servidor corriendo en puerto: ${PORT}`);
+});
+
+export function getIO() {
+    return io;
+}
