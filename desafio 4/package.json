@@ -1,12 +1,12 @@
 {
-  "name": "desafio-websockets-handlebars",
+  "name": "cuarto-desafio",
   "version": "1.0.0",
-  "type": "module",
   "description": "",
-  "main": "index.js",
+  "main": "nodemon src/App.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon src/app.js"
+    "start": "nodemon src/App.js"
   },
   "keywords": [],
   "author": "",
@@ -14,7 +14,6 @@
   "dependencies": {
     "express": "^4.18.2",
     "express-handlebars": "^7.1.2",
-    "handlebars": "^4.7.8",
     "nodemon": "^3.0.1",
     "socket.io": "^4.7.2"
   }

@@ -1,42 +1,62 @@
 const socket = io();
 
-socket.on('connect', () => {
-    console.log('Conectado al servidor de Socket.IO');
-});
+let products;
+let listProduct;
+let titleForm;
+let descriptionForm;
+let priceForm;
+let thumbnailForm;
+let codeForm;
+let stockForm;
+let button = document.getElementById("btn");
 
-socket.on('newProduct', (product) => {
-    console.log('Nuevo producto agregado:', product);
-    const productList = document.getElementById('productList');
-    const productItem = createProductItem(product);
-    console.log(productList)
-    console.log(productItem)
-    productList.appendChild(productItem);
-});
-  
-socket.on('deleteProduct', (pid) => {
-    console.log('Producto eliminado:', pid);
-    const productList = document.getElementById('productList');
-    const productItem = document.getElementById(`product-${pid}`);
-    if (productItem) {
-        productList.removeChild(productItem);
+let addProduct= button.addEventListener("click",()=>{
+
+    //traigo los elementos del formulario
+    titleForm= document.getElementById("title");
+    descriptionForm= document.getElementById("description");
+    priceForm= document.getElementById("price");
+    thumbnailForm= document.getElementById("thumbnail");
+    codeForm= document.getElementById("code");
+    stockForm= document.getElementById("stock");
+    categoryForm= document.getElementById("category");
+
+    //los guardo en el objeto
+    if (titleForm.value !== '' && descriptionForm.value !== '' && priceForm.value !== '' && thumbnailForm.value !== '' && codeForm.value !== '' && stockForm.value !== '' && stockForm.categoryForm !== '') {
+        products = {
+            title: titleForm.value,
+            description: descriptionForm.value,
+            price: priceForm.value,
+            thumbnail: thumbnailForm.value,
+            code: codeForm.value,
+            stock: stockForm.value,
+            categoryForm: categoryForm.value,
+            status: true,
+        };
+
+        titleForm.value = '';
+        descriptionForm.value = '';
+        priceForm.value = '';
+        thumbnailForm.value = '';
+        codeForm.value = '';
+        stockForm.value = '';
+        categoryForm.value = '';
+
+        alert('Se agrego correctamente el product')
+
+    } else{
+        alert('Por favor, rellene la totalidad de los campos')
     }
+    //mando los datos
+    socket.emit('prod', products);
+
+    //muestro la lista.
+    socket.on('listUpdate',data =>{
+        listProduct= document.getElementById("listProducts");
+        listProduct.innerHTML= JSON.stringify(data, null, 2);
+
+    })
+
 });
 
-function createProductItem(product) {
-    const productItem = document.createElement('div');
-    productItem.id = `product-${product.id}`;
-    productItem.innerHTML = `
-        <p>-----------------------------------------</p>
-        <p>Title: ${product.title}</p>
-        <p>Description: ${product.description}</p>
-        <p>Category: ${product.category}</p>
-        <p>Price: ${product.price}</p>
-        <img src="${product.thumbnail}" alt="${product.title}">
-        <p>Code: ${product.code}</p>
-        <p>Stock: ${product.stock}</p>
-        <p>Status: ${product.status}</p>
-        <p>Id: ${product.id}</p>
-        <p>-----------------------------------------</p>
-    `;
-    return productItem;
-}
+
