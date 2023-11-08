@@ -29,7 +29,7 @@ app.use('/', productsRoutes);
 
 
 const httpServer =app.listen(PORT, () => {
-    console.log(`server run on port: ${PORT}`);
+    console.log(`servidor corriendo en el puerto: ${PORT}`);
 })
 
 //traigo la información para guardar el producto.
@@ -38,13 +38,15 @@ const socketServer = new Server(httpServer);
 socketServer.on('connection', socket =>{
 
     socket.on('prod', async data =>{
-        if(products.length != 0){
+        if(products && products.length != 0){
             products.push(data);
             await fs.promises.writeFile(path, JSON.stringify(products,null,2));
 
+        }else {
             //mando la lista actualizada
             socketServer.emit('listUpdate', products);
-        }
+            alert("No hay productos existentes, no se agrega nada.")
+         }
 
     })
 

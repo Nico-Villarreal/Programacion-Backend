@@ -8,6 +8,7 @@ let priceForm;
 let thumbnailForm;
 let codeForm;
 let stockForm;
+let categoryForm;
 let button = document.getElementById("btn");
 
 let addProduct= button.addEventListener("click",()=>{
@@ -22,7 +23,8 @@ let addProduct= button.addEventListener("click",()=>{
     categoryForm= document.getElementById("category");
 
     //los guardo en el objeto
-    if (titleForm.value !== '' && descriptionForm.value !== '' && priceForm.value !== '' && thumbnailForm.value !== '' && codeForm.value !== '' && stockForm.value !== '' && stockForm.categoryForm !== '') {
+    if (titleForm.value !== '' && descriptionForm.value !== '' && priceForm.value !== '' && thumbnailForm.value !== '' && codeForm.value !== '' && stockForm.value !== '' && categoryForm.value !== '') {
+
         products = {
             title: titleForm.value,
             description: descriptionForm.value,
@@ -30,10 +32,11 @@ let addProduct= button.addEventListener("click",()=>{
             thumbnail: thumbnailForm.value,
             code: codeForm.value,
             stock: stockForm.value,
-            categoryForm: categoryForm.value,
+            category: categoryForm.value,
             status: true,
         };
 
+        
         titleForm.value = '';
         descriptionForm.value = '';
         priceForm.value = '';
@@ -43,6 +46,7 @@ let addProduct= button.addEventListener("click",()=>{
         categoryForm.value = '';
 
         alert('Se agrego correctamente el product')
+  
 
     } else{
         alert('Por favor, rellene la totalidad de los campos')
@@ -54,7 +58,6 @@ let addProduct= button.addEventListener("click",()=>{
     socket.on('listUpdate',data =>{
         listProduct= document.getElementById("listProducts");
         listProduct.innerHTML= JSON.stringify(data, null, 2);
-
     })
 
 });
