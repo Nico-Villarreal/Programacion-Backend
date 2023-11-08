@@ -1,13 +1,12 @@
 [
   {
-    "title": "tiburon blanco",
-    "description": "el come hombres",
-    "price": "25000",
+    "title": "gato",
+    "description": "de egipto",
+    "price": "16000",
     "thumbnail": "imagen",
     "code": "01",
-    "stock": "1",
-    "categoryForm": "depredadores",
+    "stock": "3",
+    "category": "felinos",
     "status": true
-  },
-  null
+  }
 ]
