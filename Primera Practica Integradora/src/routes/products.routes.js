@@ -3,7 +3,7 @@ import ProductManager from "../services/db/product.service.js";
 import { getIO } from "../app.js";
 
 const router = Router();
-const manager = new ProductManager('./src/data/products.json');
+const manager = new ProductManager('../data/products.json');
 
 router.get('/', async (req, res) => {
     try {
@@ -15,7 +15,7 @@ router.get('/', async (req, res) => {
         }
         res.send({status: "success", payload: products });
     } catch (error) {
-        res.status(500).json({ error: `Ocurrió un error en el servidor: ${error}` });
+        res.status(500).json({ error: `Ha ocurrido un error en el servidor: ${error}` });
     }
 });
 
@@ -30,7 +30,7 @@ router.post('/', async (req, res) => {
         io.emit('newProduct', status.product);
         res.status(status.code).json({status: status.status})
     } catch (error) {
-        res.status(500).json({ error: `Ocurrió un error en el servidor: ${error}` });
+        res.status(500).json({ error: `Ha ocurrido un error en el servidor: ${error}` });
     }
 });
 
@@ -40,7 +40,7 @@ router.get('/:pid', async (req, res) => {
     if(product) {
         res.send({status: "success", payload: product });
     } else {
-        res.status(404).json({'error': 'Producto no encontrado'});
+        res.status(404).json({'error': 'El producto no fue encontrado'});
     }
 });
 

@@ -30,13 +30,13 @@ export default class ProductManager {
     async addProduct(product) {
         try {
             if(await this.isCodeUnique(product.code)) {
-                return { code: 409, status: 'Este producto ya existe' };
+                return { code: 409, status: 'Este producto ya existe en el carrito' };
             }
             if(!this.validateFields(product)) {
-                return { code: 400, status: 'Todos los campos del producto deben ser ingresados' };
+                return { code: 400, status: 'Todos los campos del producto tienen que ser ingresados' };
             }
             let result = await MODEL_PRODUCTS.create(product);
-            return { code: 200, status: 'Producto agregado', product: result };
+            return { code: 200, status: 'El producto fue agregado correctamnte', product: result };
         } catch (error) {
             console.log(error);
         }
@@ -65,9 +65,9 @@ export default class ProductManager {
             const product = await this.getProductById(id);
             if(product) {
                 await MODEL_PRODUCTS.deleteOne({ _id: id });
-                return { code: 200, status: 'Producto eliminado' };
+                return { code: 200, status: 'El producto fue eliminado' };
             } else {
-                return { code: 404, status: 'Producto no existe' };
+                return { code: 404, status: 'El producto no existe' };
             }
         } catch (error) {
             console.log(error);
@@ -78,9 +78,9 @@ export default class ProductManager {
         try {
             const product = await MODEL_PRODUCTS.findByIdAndUpdate(id, updatedFields, { new: true });
             if(product) {
-                return { code: 200, status: 'Producto actualizado' };
+                return { code: 200, status: 'El producto ha sido actualizado' };
             } else {
-                return { code: 404, status: 'Producto no encontrado' };
+                return { code: 404, status: 'El producto no fue encontrado' };
             }
         } catch (error) {
             console.log(error);

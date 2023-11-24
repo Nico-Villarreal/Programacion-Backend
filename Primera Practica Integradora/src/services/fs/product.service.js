@@ -56,7 +56,7 @@ export default class ProductManager {
             }
             products.push(newProduct);
             await this.writeFile(products);
-            return {code: 200, status: 'Producto agregado', product: newProduct};
+            return {code: 200, status: 'El producto fue agregado', product: newProduct};
         } catch (error) {
             console.log(error);
         }
@@ -67,7 +67,7 @@ export default class ProductManager {
             const products = await fs.promises.readFile(this.path, 'utf-8');
             return JSON.parse(products);
         } catch (error) {
-            if(error.message.includes('no such file or directory')) return [];
+            if(error.message.includes('El fichero o directorio no existe')) return [];
             console.log(error);
         }
     }
@@ -89,9 +89,9 @@ export default class ProductManager {
             if(product) {
                 const newProducts = products.filter(product => product.id !== id);
                 await this.writeFile(newProducts);
-                return {code: 200, status: 'Producto eliminado'};
+                return {code: 200, status: 'El producto fue eliminado'};
             }else {
-                return {code: 404, status: 'Producto no existe'};
+                return {code: 404, status: 'El producto no existe'};
             }
         } catch (error) {
             console.log(error);
@@ -109,9 +109,9 @@ export default class ProductManager {
                     ...updatedFields
                 }
                 await this.writeFile(products);
-                return {code: 200, status: 'Producto actualizado'};
+                return {code: 200, status: 'El producto fue actualizado'};
             } else {
-                return {code: 404, status: 'Producto no encontrado'};
+                return {code: 404, status: 'El producto no fue encontrado'};
             }
         } catch (error) {
             console.log(error);

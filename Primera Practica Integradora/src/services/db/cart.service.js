@@ -36,7 +36,7 @@ export default class CartManager {
         try {
             const cart = await MODEL_CARTS.findById(cid);
             if (!cart) {
-                return { code: 404, status: 'carrito no encontrado' };
+                return { code: 404, status: 'El carrito no fue encontrado' };
             }
             const productExist = cart.products.find(product => product.product === pid);
             if (productExist) {
@@ -45,7 +45,7 @@ export default class CartManager {
                 cart.products.push({ product: pid, quantity: 1 });
             }
             await cart.save();
-            return { code: 200, status: 'producto agregado al carrito' };
+            return { code: 200, status: 'El producto fue agregado al carrito' };
         } catch (error) {
             console.log(error);
         }
