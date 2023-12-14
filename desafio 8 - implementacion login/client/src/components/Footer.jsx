@@ -2,7 +2,7 @@ import React from "react";
 
 const Footer = () => {
     return <footer className="footer">
-        <p>Rodrigo Vergara 2023 - Portafolio <a href="http://rodrigovergara.com.ar">aqui</a></p>
+        <p>2023 - Portafolio <a href="https://github.com/Nico-Villarreal">aqui</a></p>
     </footer>
 }
 
